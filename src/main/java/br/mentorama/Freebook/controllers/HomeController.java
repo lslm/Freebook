@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     @GetMapping("/home")
-    public String home(@RequestParam("name") String nome, Model model) {
+    public String home(Model model) {
         String welcomeMessage = "FreeBook é a plataforma livre de compartilhamento de livros";
 
-        model.addAttribute("nome", nome);
         model.addAttribute("welcomeMessage", welcomeMessage);
         return "home";
     }
