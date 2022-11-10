@@ -7,5 +7,27 @@
 
   <body>
     <h1>Listando livros cadastrados</h1>
+
+    <a href="/books/new">Cadastrar livro</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Gênero</th>
+                <th>ISBN</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.gender}"></td>
+                <td th:text="${book.isbn}"></td>
+            </tr>
+        </tbody>
+    </table>
   </body>
 </html>
