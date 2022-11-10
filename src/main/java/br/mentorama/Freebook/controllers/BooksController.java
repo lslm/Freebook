@@ -32,7 +32,7 @@ public class BooksController {
     }
 
     @PostMapping
-    public String create(NewBookRequest newBookRequest, Model model) {
+    public String create(NewBookRequest newBookRequest) {
         bookService.create(newBookRequest);
         return "redirect:books";
     }
