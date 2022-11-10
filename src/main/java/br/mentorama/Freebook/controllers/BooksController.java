@@ -5,9 +5,12 @@ import br.mentorama.Freebook.entities.Book;
 import br.mentorama.Freebook.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("books")
@@ -16,17 +19,22 @@ public class BooksController {
     @Autowired
     private BookService bookService;
 
+    @GetMapping
+    public String index(Model model) {
+        List<Book> books = bookService.findAll();
+        model.addAttribute("books", books);
+        return "books/index";
+    }
+
     @GetMapping("new")
     public String newBook() {
         return "books/new";
     }
 
     @PostMapping
-    public String create(NewBookRequest newBookRequest) {
-        Book newBook = bookService.create(newBookRequest);
-
-        System.out.println(newBook);
-        return "books/index";
+    public String create(NewBookRequest newBookRequest, Model model) {
+        bookService.create(newBookRequest);
+        return "redirect:books";
     }
 
 }
