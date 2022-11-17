@@ -1,51 +1,15 @@
-package br.mentorama.Freebook.entities;
+package br.mentorama.Freebook.dto;
 
-import javax.persistence.*;
-import java.util.UUID;
-
-@Entity
-@Table(name = "books")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class UpdateBookRequest {
     private Integer id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false)
     private String author;
-
-    @Column(nullable = false)
     private String gender;
-
-    @Column(nullable = false)
     private String isbn;
-
-    @Column(nullable = false)
-    private String ano;
-
-    @Column(nullable = false)
+    private String year;
     private String synopsis;
-
-    @Column(nullable = false)
     private String edition;
-
-    @Column(nullable = false)
     private String publisher;
-
-    public Book() {}
-
-    public Book(String title, String author, String gender, String isbn, String ano, String synopsis, String edition, String publisher) {
-        this.title = title;
-        this.author = author;
-        this.gender = gender;
-        this.isbn = isbn;
-        this.ano = ano;
-        this.synopsis = synopsis;
-        this.edition = edition;
-        this.publisher = publisher;
-    }
 
     public Integer getId() {
         return id;
@@ -87,12 +51,12 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getAno() {
-        return ano;
+    public String getYear() {
+        return year;
     }
 
-    public void setAno(String ano) {
-        this.ano = ano;
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getSynopsis() {
@@ -121,16 +85,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "UpdateBookRequest{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", gender='" + gender + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", ano='" + ano + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", edition='" + edition + '\'' +
-                ", publisher='" + publisher + '\'' +
                 '}';
     }
 }

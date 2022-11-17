@@ -13,19 +13,23 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Título</th>
                 <th>Autor</th>
                 <th>Gênero</th>
                 <th>ISBN</th>
+                <th>Ação</th>
             </tr>
         </thead>
 
         <tbody>
             <tr th:each="book : ${books}">
+                <td th:text="${book.id}"></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.gender}"></td>
                 <td th:text="${book.isbn}"></td>
+                <td><a th:href="@{/books/{id}/edit (id=${book.id})}">Editar</a></td>
             </tr>
         </tbody>
     </table>

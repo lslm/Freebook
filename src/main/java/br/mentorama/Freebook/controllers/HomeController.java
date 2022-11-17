@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping
     public String home(Model model) {
         String welcomeMessage = "FreeBook é a plataforma livre de compartilhamento de livros";
 
