@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Edição do livro</title>
+  </head>
+
+  <body>
+    <h1>Atualização de dados de livro: </h1>
+    <h2 th:text="${book.title}"></h2>
+
+    <form th:action="@{/books/{id}/update (id=${book.id})}" method="post">
+        <div>
+            <label for="title">Título</label>
+            <input th:value="${book.title}" id="title" name="title">
+        </div>
+
+        <div>
+            <label for="author">Autor</label>
+            <input th:value="${book.author}" id="author" name="author">
+        </div>
+
+        <div>
+            <label for="gender">Gênero</label>
+            <input th:value="${book.gender}" id="gender" name="gender">
+        </div>
+
+        <div>
+            <label for="isbn">ISBN</label>
+            <input th:value="${book.isbn}" id="isbn" name="isbn">
+        </div>
+
+        <div>
+            <label for="synopsis">Sinopse</label>
+            <input th:value="${book.synopsis}" id="synopsis" name="synopsis">
+        </div>
+
+        <div>
+            <label for="year">Ano</label>
+            <input th:value="${book.ano}" id="year" name="year">
+        </div>
+
+        <div>
+            <label for="edition">Edição</label>
+            <input th:value="${book.edition}" id="edition" name="edition">
+        </div>
+
+        <div>
+            <label for="publisher">Editora</label>
+            <input th:value="${book.publisher}" id="publisher" name="publisher">
+        </div>
+
+        <button type="submit">Atualizar dados</button>
+    </form>
+  </body>
+</html>

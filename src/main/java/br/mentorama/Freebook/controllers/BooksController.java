@@ -1,14 +1,13 @@
 package br.mentorama.Freebook.controllers;
 
 import br.mentorama.Freebook.dto.NewBookRequest;
+import br.mentorama.Freebook.dto.UpdateBookRequest;
 import br.mentorama.Freebook.entities.Book;
 import br.mentorama.Freebook.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +34,23 @@ public class BooksController {
     public String create(NewBookRequest newBookRequest) {
         bookService.create(newBookRequest);
         return "redirect:books";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Integer id, Model model) {
+        Book book = bookService.find(id);
+        model.addAttribute("book", book);
+        return "books/edit";
+    }
+
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable Integer id, UpdateBookRequest updateBookRequest) {
+        System.out.println(id);
+        System.out.println(updateBookRequest);
+
+        bookService.update(id, updateBookRequest);
+
+        return "redirect:/books";
     }
 
 }
