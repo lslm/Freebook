@@ -7,6 +7,10 @@
   <body>
     <h1 th:text="${welcomeMessage}"></h1>
 
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sair">
+    </form>
+
     <h2>
         <a href="/books/new">Criar novo livro</a>
     </h2>
