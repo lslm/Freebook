@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookService {
@@ -32,11 +33,11 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public Book find(Integer id) {
+    public Book find(UUID id) {
         return bookRepository.findById(id).get();
     }
 
-    public Book update(Integer id, UpdateBookRequest updateBookRequest) {
+    public Book update(UUID id, UpdateBookRequest updateBookRequest) {
         Book book = bookRepository.findById(id).get();
 
         book.setTitle(updateBookRequest.getTitle());

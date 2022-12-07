@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("books")
@@ -37,14 +38,14 @@ public class BooksController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable Integer id, Model model) {
+    public String edit(@PathVariable UUID id, Model model) {
         Book book = bookService.find(id);
         model.addAttribute("book", book);
         return "books/edit";
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Integer id, UpdateBookRequest updateBookRequest) {
+    public String update(@PathVariable UUID id, UpdateBookRequest updateBookRequest) {
         System.out.println(id);
         System.out.println(updateBookRequest);
 

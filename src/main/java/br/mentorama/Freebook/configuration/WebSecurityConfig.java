@@ -23,7 +23,8 @@ public class WebSecurityConfig {
         ).formLogin((form) -> form
                 .loginPage("/login")
                 .permitAll()
-        ).logout(LogoutConfigurer::permitAll);
+        ).logout(LogoutConfigurer::permitAll)
+                .csrf().disable();
 
         return http.build();
     }
