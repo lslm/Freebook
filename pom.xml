@@ -52,6 +52,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>2.1.212</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.4.1</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
@@ -61,6 +68,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>9.8.1</version>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/freebook</url>
+					<user>lucassantos</user>
+					<password>admin</password>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
