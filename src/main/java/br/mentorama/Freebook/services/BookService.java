@@ -42,7 +42,7 @@ public class BookService {
 
         book.setTitle(updateBookRequest.getTitle());
         book.setAuthor(updateBookRequest.getAuthor());
-        book.setAno(updateBookRequest.getYear());
+        book.setPublicationYear(updateBookRequest.getYear());
         book.setEdition(updateBookRequest.getEdition());
         book.setGender(updateBookRequest.getGender());
         book.setPublisher(updateBookRequest.getPublisher());

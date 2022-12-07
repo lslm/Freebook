@@ -23,7 +23,7 @@ public class Book {
     private String isbn;
 
     @Column(nullable = false)
-    private String ano;
+    private String publicationYear;
 
     @Column(nullable = false)
     private String synopsis;
@@ -36,12 +36,12 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String author, String gender, String isbn, String ano, String synopsis, String edition, String publisher) {
+    public Book(String title, String author, String gender, String isbn, String publicationYear, String synopsis, String edition, String publisher) {
         this.title = title;
         this.author = author;
         this.gender = gender;
         this.isbn = isbn;
-        this.ano = ano;
+        this.publicationYear = publicationYear;
         this.synopsis = synopsis;
         this.edition = edition;
         this.publisher = publisher;
@@ -87,12 +87,12 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getAno() {
-        return ano;
+    public String getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setAno(String ano) {
-        this.ano = ano;
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public String getSynopsis() {
@@ -127,7 +127,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", gender='" + gender + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", ano='" + ano + '\'' +
+                ", publicationYear='" + publicationYear + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", edition='" + edition + '\'' +
                 ", publisher='" + publisher + '\'' +
