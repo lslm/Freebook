@@ -7,6 +7,8 @@ import br.mentorama.Freebook.repositories.LendingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LendingService {
     @Autowired
@@ -18,5 +20,10 @@ public class LendingService {
         lending.setBook(book);
 
         return lendingRepository.save(lending);
+    }
+
+    public List<Lending> findLendingsByUser(User user) {
+        List<Lending> lendings = lendingRepository.findByUser(user);
+        return lendings;
     }
 }
