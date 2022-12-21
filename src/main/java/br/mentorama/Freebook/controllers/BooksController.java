@@ -31,6 +31,13 @@ public class BooksController {
         return "books/new";
     }
 
+    @GetMapping("/{id}")
+    public String show(@PathVariable UUID id, Model model) {
+        Book book = bookService.find(id);
+        model.addAttribute("book", book);
+        return "books/show";
+    }
+
     @PostMapping
     public String create(NewBookRequest newBookRequest) {
         bookService.create(newBookRequest);

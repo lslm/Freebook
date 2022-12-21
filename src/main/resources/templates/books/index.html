@@ -12,6 +12,8 @@
         <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
             <h1>Listando livros cadastrados</h1>
             <a href="/books/new" class="btn btn-primary">Cadastrar livro</a>
+
+            <a href="/lendings" class="btn btn-primary">Meus livros emprestados</a>
         </div>
 
         <table class="table table-striped">
@@ -33,7 +35,7 @@
                     <td th:text="${book.author}"></td>
                     <td th:text="${book.gender}"></td>
                     <td th:text="${book.isbn}"></td>
-                    <td><a th:href="@{/books/{id}/edit (id=${book.id})}">Editar</a></td>
+                    <td><a th:href="@{/books/{id} (id=${book.id})}">Visualizar</a></td>
                 </tr>
             </tbody>
         </table>

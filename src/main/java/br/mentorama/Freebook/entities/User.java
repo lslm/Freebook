@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +24,9 @@ public class User implements UserDetails {
 
     @Column(name = "password_digest", nullable = false)
     private String passwordDigest;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Lending> lendings;
 
     public UUID getId() {
         return id;
@@ -89,5 +93,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public List<Lending> getLendings() {
+        return lendings;
+    }
+
+    public void setLendings(List<Lending> lendings) {
+        this.lendings = lendings;
     }
 }
