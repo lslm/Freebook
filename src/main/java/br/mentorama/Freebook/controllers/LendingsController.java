@@ -43,6 +43,15 @@ public class LendingsController {
         return "redirect:/books";
     }
 
+    @GetMapping("/{id}")
+    private String find(@PathVariable UUID id, Model model) {
+        Lending lending = lendingService.findById(id);
+
+        model.addAttribute("lending", lending);
+
+        return "lendings/show";
+    }
+
     @GetMapping
     public String index(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();

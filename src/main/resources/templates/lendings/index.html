@@ -19,14 +19,16 @@
       <th>ID</th>
       <th>Título</th>
       <th>Autor</th>
+      <th>Visualizar</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="lending : ${lendings}">
-      <td th:text="${lending.book.id}"></td>
+      <td th:text="${lending.id}"></td>
       <td th:text="${lending.book.title}"></td>
       <td th:text="${lending.book.author}"></td>
+      <td><a th:href="@{/lendings/{id} (id=${lending.id})}">Visualizar</a></td>
     </tr>
     </tbody>
   </table>
