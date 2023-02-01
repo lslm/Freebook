@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+
 </head>
 <body>
 
 <h1 th:text="${book.title}"></h1>
 
 ID: <p th:text="${book.id}"></p>
+
+<img th:src="${book.coverPath}">
 
 <form th:action="@{/lendings/books/{id} (id=${book.id})}" method="post">
     <button type="submit">Pegar emprestado</button>

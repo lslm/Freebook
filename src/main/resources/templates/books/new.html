@@ -11,7 +11,7 @@
     <div class="container w-50">
       <h1>Criando um novo livro</h1>
 
-      <form action="/books" method="post">
+      <form action="/books" method="post" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="title" class="form-label">Titulo</label>
           <input id="title" name="title" class="form-control">
@@ -50,6 +50,11 @@
         <div class="mb-3">
           <label for="publisher" class="form-label">Editora</label>
           <input id="publisher" name="publisher" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label for="cover" class="form-label">Capa do Livro</label>
+          <input type="file" id="cover" name="cover" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-primary">Criar livro</button>

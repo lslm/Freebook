@@ -34,6 +34,9 @@ public class Book {
     @Column(nullable = false)
     private String publisher;
 
+    @Column(name = "cover_path", nullable = false)
+    private String coverPath;
+
     public Book() {}
 
     public Book(String title, String author, String gender, String isbn, String publicationYear, String synopsis, String edition, String publisher) {
@@ -119,6 +122,14 @@ public class Book {
         this.publisher = publisher;
     }
 
+    public String getCoverPath() {
+        return coverPath;
+    }
+
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -131,6 +142,7 @@ public class Book {
                 ", synopsis='" + synopsis + '\'' +
                 ", edition='" + edition + '\'' +
                 ", publisher='" + publisher + '\'' +
+                ", coverPath='" + coverPath + '\'' +
                 '}';
     }
 }
