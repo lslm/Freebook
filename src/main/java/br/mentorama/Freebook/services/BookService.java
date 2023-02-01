@@ -6,12 +6,17 @@ import br.mentorama.Freebook.entities.Book;
 import br.mentorama.Freebook.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class BookService {
+
+    private final String IMAGES_DIRECTORY = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "images";
 
     @Autowired
     private BookRepository bookRepository;
@@ -20,7 +25,18 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book create(NewBookRequest newBookRequest) {
+    public Book create(NewBookRequest newBookRequest, MultipartFile bookCoverFile) {
+        String uploadPath = System.getProperty("user.dir") + File.separator + IMAGES_DIRECTORY;
+
+        String filename = UUID.randomUUID() + "-" + bookCoverFile.getOriginalFilename();
+        File uploadedFilePath = new File(uploadPath + File.separator + filename);
+
+        try {
+            bookCoverFile.transferTo(uploadedFilePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         Book book = new Book(newBookRequest.getTitle(),
                 newBookRequest.getAuthor(),
                 newBookRequest.getGender(),
@@ -29,6 +45,8 @@ public class BookService {
                 newBookRequest.getSynopsis(),
                 newBookRequest.getEdition(),
                 newBookRequest.getPublisher());
+
+        book.setCoverPath(File.separator + "images" + File.separator + filename);
 
         return bookRepository.save(book);
     }
