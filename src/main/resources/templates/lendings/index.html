@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
-<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
 
-<div class="container">
-  <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
-    <h1>Meus livros emprestados</h1>
-  </div>
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-4">FreeBook</span>
+        </a>
 
-  <table class="table table-striped">
-    <thead>
-    <tr class="table-dark">
-      <th>ID</th>
-      <th>Título</th>
-      <th>Autor</th>
-      <th>Visualizar</th>
-    </tr>
-    </thead>
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="/lending-requests" class="nav-link" aria-current="page">Solicitações</a></li>
+          <li class="nav-item"><a href="/books" class="nav-link" aria-current="page">Ver livros</a></li>
+          <li class="nav-item"><a href="/lendings" class="nav-link active">Meus livros emprestados</a></li>
 
-    <tbody>
-    <tr th:each="lending : ${lendings}">
-      <td th:text="${lending.id}"></td>
-      <td th:text="${lending.book.title}"></td>
-      <td th:text="${lending.book.author}"></td>
-      <td><a th:href="@{/lendings/{id} (id=${lending.id})}">Visualizar</a></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+          <div sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+              <li class="nav-item"><input type="submit" class="nav-link" value="Sair"></li>
+            </form>
+          </div>
+        </ul>
+      </header>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</body>
+    <div class="container">
+      <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
+        <h1>Meus livros emprestados</h1>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+        <tr class="table-dark">
+          <th>ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Visualizar</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="lending : ${lendings}">
+          <td th:text="${lending.id}"></td>
+          <td th:text="${lending.book.title}"></td>
+          <td th:text="${lending.book.author}"></td>
+          <td><a th:href="@{/lendings/{id} (id=${lending.id})}">Visualizar</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
 </html>
