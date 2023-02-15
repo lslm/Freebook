@@ -10,7 +10,7 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model) {
-        String welcomeMessage = "FreeBook é a plataforma livre de compartilhamento de livros";
+        String welcomeMessage = "FreeBook é a plataforma compartilhamento de livros. Doe e compartilhe livros que pessoas do Brasil todo disponibilizam";
 
         model.addAttribute("welcomeMessage", welcomeMessage);
         return "home";

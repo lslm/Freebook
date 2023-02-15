@@ -37,6 +37,10 @@ public class Book {
     @Column(name = "cover_path", nullable = false)
     private String coverPath;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     public Book() {}
 
     public Book(String title, String author, String gender, String isbn, String publicationYear, String synopsis, String edition, String publisher) {
@@ -128,6 +132,14 @@ public class Book {
 
     public void setCoverPath(String coverPath) {
         this.coverPath = coverPath;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

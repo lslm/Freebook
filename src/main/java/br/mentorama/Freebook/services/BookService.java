@@ -3,8 +3,10 @@ package br.mentorama.Freebook.services;
 import br.mentorama.Freebook.dto.NewBookRequest;
 import br.mentorama.Freebook.dto.UpdateBookRequest;
 import br.mentorama.Freebook.entities.Book;
+import br.mentorama.Freebook.entities.User;
 import br.mentorama.Freebook.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +22,9 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private UsersService usersService;
 
     public List<Book> findAll() {
         return bookRepository.findAll();
@@ -47,6 +52,10 @@ public class BookService {
                 newBookRequest.getPublisher());
 
         book.setCoverPath(File.separator + "images" + File.separator + filename);
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = usersService.findByEmail(email);
+        book.setUser(user);
 
         return bookRepository.save(book);
     }
