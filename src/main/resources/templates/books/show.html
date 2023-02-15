@@ -14,7 +14,7 @@ ID: <p th:text="${book.id}"></p>
 
 <img th:src="${book.coverPath}">
 
-<form th:action="@{/lendings/books/{id} (id=${book.id})}" method="post">
+<form th:action="@{/lending-requests/book/{id} (id=${book.id})}" method="post">
     <button type="submit">Pegar emprestado</button>
 </form>
 
