@@ -26,8 +26,8 @@ public class BookService {
     @Autowired
     private UsersService usersService;
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public List<Book> findAvailableBooks() {
+        return bookRepository.findAvailableBooks();
     }
 
     public Book create(NewBookRequest newBookRequest, MultipartFile bookCoverFile) {

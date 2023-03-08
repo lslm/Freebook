@@ -32,4 +32,10 @@ public class LendingRequestController {
         model.addAttribute("lendingsRequests", requests);
         return "lendingRequests/index";
     }
+
+    @PostMapping("/{id}/approve")
+    public String approveRequest(@PathVariable UUID id) {
+        lendingRequestService.approveRequest(id);
+        return "redirect:/lending-requests";
+    }
 }

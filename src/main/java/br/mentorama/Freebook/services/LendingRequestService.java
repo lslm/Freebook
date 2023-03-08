@@ -21,6 +21,9 @@ public class LendingRequestService {
     private BookService bookService;
 
     @Autowired
+    private LendingService lendingService;
+
+    @Autowired
     private LendingRequestRepository lendingRequestRepository;
 
     public LendingRequest create(UUID bookId) {
@@ -39,6 +42,19 @@ public class LendingRequestService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = usersService.findByEmail(email);
 
-        return lendingRequestRepository.findByBookOwner(user.getId());
+        return lendingRequestRepository.findPendingRequests(user.getId());
+    }
+
+    public void approveRequest(UUID id) {
+        LendingRequest pendingLendingRequest = lendingRequestRepository.findById(id).get();
+        pendingLendingRequest.setApproved(true);
+        pendingLendingRequest.getBook().setAvailable(false);
+
+        List<LendingRequest> lendingRequestsToReject = findMyRequests();
+        lendingRequestsToReject.stream()
+                .filter(lendingRequest -> lendingRequest.getBook().getId().equals(pendingLendingRequest.getBook().getId()))
+                .forEach(lendingRequest -> lendingRequestRepository.delete(lendingRequest));
+
+        lendingService.create(pendingLendingRequest.getRequestedBy(), pendingLendingRequest.getBook());
     }
 }
