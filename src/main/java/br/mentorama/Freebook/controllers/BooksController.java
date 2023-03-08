@@ -22,7 +22,7 @@ public class BooksController {
 
     @GetMapping
     public String index(Model model) {
-        List<Book> books = bookService.findAll();
+        List<Book> books = bookService.findAvailableBooks();
         model.addAttribute("books", books);
         return "books/index";
     }

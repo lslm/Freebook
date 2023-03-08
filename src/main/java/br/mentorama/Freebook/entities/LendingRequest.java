@@ -18,6 +18,9 @@ public class LendingRequest {
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
+    @Column(nullable = false)
+    private boolean approved;
+
     public UUID getId() {
         return id;
     }
@@ -40,5 +43,13 @@ public class LendingRequest {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 }

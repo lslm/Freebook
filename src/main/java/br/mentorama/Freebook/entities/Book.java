@@ -41,6 +41,9 @@ public class Book {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+    @Column(nullable = false)
+    private boolean available;
+
     public Book() {}
 
     public Book(String title, String author, String gender, String isbn, String publicationYear, String synopsis, String edition, String publisher) {
@@ -140,6 +143,14 @@ public class Book {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     @Override

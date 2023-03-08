@@ -35,6 +35,7 @@
               <tr class="table-dark">
                   <th>Título</th>
                   <th>Solicitado por</th>
+                  <th>Ações</th>
               </tr>
               </thead>
 
@@ -42,6 +43,11 @@
               <tr th:each="lending : ${lendingsRequests}">
                   <td th:text="${lending.book.title}"></td>
                   <td th:text="|${lending.requestedBy.name} (${lending.requestedBy.email})|"></td>
+                  <td>
+                      <form th:action="@{/lending-requests/{id}/approve (id=${lending.id})}" method="post">
+                          <button class="btn btn-primary" type="submit">Aprovar</button>
+                      </form>
+                  </td>
               </tr>
               </tbody>
           </table>
