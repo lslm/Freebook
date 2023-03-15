@@ -13,6 +13,6 @@ public interface LendingRequestRepository extends JpaRepository<LendingRequest, 
     @Query("SELECT l FROM LendingRequest l WHERE l.book.user.id = ?1")
     List<LendingRequest> findByBookOwner(UUID userId);
 
-    @Query("SELECT l FROM LendingRequest l WHERE l.book.user.id = ?1 AND l.approved = false")
+    @Query("SELECT l FROM LendingRequest l WHERE l.book.user.id = ?1 AND l.approvedAt = null AND l.rejectedAt = null")
     List<LendingRequest> findPendingRequests(UUID userId);
 }

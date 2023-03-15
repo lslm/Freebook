@@ -1,6 +1,7 @@
 package br.mentorama.Freebook.entities;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -18,8 +19,11 @@ public class LendingRequest {
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
-    @Column(nullable = false)
-    private boolean approved;
+    @Column(name = "approved_at")
+    private Instant approvedAt;
+
+    @Column(name = "rejected_at")
+    private Instant rejectedAt;
 
     public UUID getId() {
         return id;
@@ -45,11 +49,19 @@ public class LendingRequest {
         this.book = book;
     }
 
-    public boolean getApproved() {
-        return approved;
+    public Instant getApprovedAt() {
+        return approvedAt;
     }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
+    public void setApprovedAt(Instant approvedAt) {
+        this.approvedAt = approvedAt;
+    }
+
+    public Instant getRejectedAt() {
+        return rejectedAt;
+    }
+
+    public void setRejectedAt(Instant rejectedAt) {
+        this.rejectedAt = rejectedAt;
     }
 }

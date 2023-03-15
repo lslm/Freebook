@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,13 +48,15 @@ public class LendingRequestService {
 
     public void approveRequest(UUID id) {
         LendingRequest pendingLendingRequest = lendingRequestRepository.findById(id).get();
-        pendingLendingRequest.setApproved(true);
+        pendingLendingRequest.setApprovedAt(Instant.now());
         pendingLendingRequest.getBook().setAvailable(false);
+
+        lendingRequestRepository.save(pendingLendingRequest);
 
         List<LendingRequest> lendingRequestsToReject = findMyRequests();
         lendingRequestsToReject.stream()
                 .filter(lendingRequest -> lendingRequest.getBook().getId().equals(pendingLendingRequest.getBook().getId()))
-                .forEach(lendingRequest -> lendingRequestRepository.delete(lendingRequest));
+                .forEach(lendingRequest -> lendingRequest.setRejectedAt(Instant.now()));
 
         lendingService.create(pendingLendingRequest.getRequestedBy(), pendingLendingRequest.getBook());
     }
