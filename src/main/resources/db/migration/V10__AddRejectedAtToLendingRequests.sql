@@ -1,0 +1,1 @@
+ALTER TABLE lending_requests ADD COLUMN rejected_at TIMESTAMP;
