@@ -56,6 +56,7 @@ public class BookService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = usersService.findByEmail(email);
         book.setUser(user);
+        book.setAvailable(true);
 
         return bookRepository.save(book);
     }

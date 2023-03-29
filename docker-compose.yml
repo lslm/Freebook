@@ -17,3 +17,5 @@ services:
       - database
     environment:
       DB_URL: jdbc:postgresql://database/freebook
+      DB_USER: admin
+      DB_PASSWORD: admin
